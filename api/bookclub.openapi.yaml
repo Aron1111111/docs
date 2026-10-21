@@ -1,0 +1,116 @@
+openapi: 3.0.3
+info:
+  title: '图书俱乐部 API / API Книжного клуба'
+  version: 1.0.0
+paths:
+  /meetings:
+    get:
+      operationId: listMeetings
+      summary: '获取活动列表 / Получить список встреч'
+      parameters:
+        - name: limit
+          in: query
+          description: '返回数量 / Число результатов'
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: offset
+          in: query
+          description: '跳过数量 / Число пропущенных записей'
+          schema: {type: integer, minimum: 0, default: 0}
+      responses:
+        '200':
+          description: '列表 可为空 / Список может быть пустым'
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {$ref: '#/components/schemas/Meeting'}
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /meetings/{id}/registrations:
+    post:
+      operationId: registerForMeeting
+      summary: '报名活动 / Записаться на встречу'
+      description: >-
+        当前用户由令牌确定 无需请求体
+        Участник определяется по токену Тело не требуется
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: '活动编号 / Идентификатор встречи'
+          schema: {type: integer, minimum: 1}
+          example: 42
+      responses:
+        '201':
+          description: '报名已创建 / Запись создана'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Registration'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          description: '令牌缺失或无效 / Токен отсутствует или неверен'
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Error'}
+        '404':
+          description: '活动不存在 / Встреча не найдена'
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Error'}
+        '409':
+          description: '已经报名 / Участник уже записан'
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Error'}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  responses:
+    BadRequest:
+      description: '参数无效 / Неверные параметры'
+      content:
+        application/json:
+          schema: {$ref: '#/components/schemas/Error'}
+  schemas:
+    Meeting:
+      type: object
+      required: [id, title, startsAt, location]
+      properties:
+        id: {type: integer, minimum: 1, example: 42}
+        title:
+          type: string
+          example: 'Мастер и Маргарита'
+        startsAt:
+          type: string
+          format: date-time
+          example: '2026-11-01T15:00:00+03:00'
+        location: {type: string, example: 'Библиотека зал 2'}
+    Registration:
+      type: object
+      required: [id, meetingId, memberId, createdAt]
+      properties:
+        id: {type: integer, minimum: 1, example: 108}
+        meetingId: {type: integer, minimum: 1, example: 42}
+        memberId: {type: integer, minimum: 1, example: 17}
+        createdAt:
+          type: string
+          format: date-time
+          example: '2026-10-20T12:00:00+03:00'
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code: {type: string, example: ALREADY_REGISTERED}
+        message:
+          type: string
+          example: '已经报名 / Участник уже записан'
