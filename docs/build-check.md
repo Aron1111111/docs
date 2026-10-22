@@ -1,1 +1,1 @@
-`python tools/check_docs.py`
+`python -B tools/check_docs.py`
