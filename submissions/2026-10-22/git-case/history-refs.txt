@@ -1,0 +1,6 @@
+fe6d0b59d56b023f0b9fce22b25c7620da174776 refs/heads/docs/readme-usage
+2f27fa1725a6ec4e6f3b11c1df1271fc304e322c refs/heads/feature-a
+192c9a7a1f41998e7ba93b4ce3cadd037bbfab1d refs/heads/main
+e2dc07de1489308616036b676975994efb03ea45 refs/heads/price-promo
+ce9bbc6b67120c12f706005bade51183a59e7a96 refs/heads/price-up
+192c9a7a1f41998e7ba93b4ce3cadd037bbfab1d refs/tags/v1.0.0

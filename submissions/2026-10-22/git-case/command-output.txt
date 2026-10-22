@@ -1,0 +1,274 @@
+Git 案例实践 实际命令输出 / Практикум Git Фактический вывод
+
+工作目录中的绝对路径统一写为 <lab-git>。
+Абсолютный путь учебной папки обозначен как <lab-git>.
+
+任务 / Задание 1
+
+$ mkdir lab-git
+[无输出 / Нет вывода]
+[退出码 / Код: 0]
+
+$ cd lab-git
+[无输出 / Нет вывода]
+[退出码 / Код: 0]
+
+$ git init -b main
+Initialized empty Git repository in <lab-git>/.git/
+[退出码 / Код: 0]
+
+$ git config user.name "Aron"
+[无输出 / Нет вывода]
+[退出码 / Код: 0]
+
+$ git config user.email "aron@example.com"
+[无输出 / Нет вывода]
+[退出码 / Код: 0]
+
+$ echo "Проект: учебный" > readme.txt
+[无输出 / Нет вывода]
+[退出码 / Код: 0]
+
+$ git add readme.txt
+[无输出 / Нет вывода]
+[退出码 / Код: 0]
+
+$ git commit -m "Add readme"
+[main (root-commit) 47d5c1c] Add readme
+ 1 file changed, 1 insertion(+)
+ create mode 100644 readme.txt
+[退出码 / Код: 0]
+
+$ git log --oneline
+47d5c1c Add readme
+[退出码 / Код: 0]
+
+任务 / Задание 2
+
+$ git branch feature-a
+[无输出 / Нет вывода]
+[退出码 / Код: 0]
+
+$ git switch feature-a
+Switched to branch 'feature-a'
+[退出码 / Код: 0]
+
+$ echo "Функция A" > a.txt
+[无输出 / Нет вывода]
+[退出码 / Код: 0]
+
+$ git add a.txt
+[无输出 / Нет вывода]
+[退出码 / Код: 0]
+
+$ git commit -m "Add feature A"
+[feature-a 2f27fa1] Add feature A
+ 1 file changed, 1 insertion(+)
+ create mode 100644 a.txt
+[退出码 / Код: 0]
+
+$ git switch main
+Switched to branch 'main'
+[退出码 / Код: 0]
+
+$ git merge feature-a
+Updating 47d5c1c..2f27fa1
+Fast-forward
+ a.txt | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 a.txt
+[退出码 / Код: 0]
+
+$ cat a.txt
+Функция A
+[退出码 / Код: 0]
+
+$ git log --oneline
+2f27fa1 Add feature A
+47d5c1c Add readme
+[退出码 / Код: 0]
+
+任务 / Задание 3
+
+$ echo "Цена: 100 рублей" > price.txt
+[无输出 / Нет вывода]
+[退出码 / Код: 0]
+
+$ git add price.txt
+[无输出 / Нет вывода]
+[退出码 / Код: 0]
+
+$ git commit -m "Add base price"
+[main 7e8c651] Add base price
+ 1 file changed, 1 insertion(+)
+ create mode 100644 price.txt
+[退出码 / Код: 0]
+
+$ git branch price-up
+[无输出 / Нет вывода]
+[退出码 / Код: 0]
+
+$ git branch price-promo
+[无输出 / Нет вывода]
+[退出码 / Код: 0]
+
+$ git switch price-up
+Switched to branch 'price-up'
+[退出码 / Код: 0]
+
+$ echo "Цена: 120 рублей" > price.txt
+[无输出 / Нет вывода]
+[退出码 / Код: 0]
+
+$ git commit -am "Increase price"
+[price-up ce9bbc6] Increase price
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+[退出码 / Код: 0]
+
+$ git switch price-promo
+Switched to branch 'price-promo'
+[退出码 / Код: 0]
+
+$ echo "Цена: 90 рублей" > price.txt
+[无输出 / Нет вывода]
+[退出码 / Код: 0]
+
+$ git commit -am "Set promotional price"
+[price-promo e2dc07d] Set promotional price
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+[退出码 / Код: 0]
+
+$ git switch main
+Switched to branch 'main'
+[退出码 / Код: 0]
+
+$ git merge price-up
+Updating 7e8c651..ce9bbc6
+Fast-forward
+ price.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+[退出码 / Код: 0]
+
+$ git merge price-promo
+Auto-merging price.txt
+CONFLICT (content): Merge conflict in price.txt
+Automatic merge failed; fix conflicts and then commit the result.
+[退出码 / Код: 1]
+
+$ cat price.txt
+  <<<<<<< HEAD
+Цена: 120 рублей
+  =======
+Цена: 90 рублей
+  >>>>>>> price-promo
+[退出码 / Код: 0]
+
+$ echo "Цена: 90 рублей" > price.txt
+[无输出 / Нет вывода]
+[退出码 / Код: 0]
+
+$ git add price.txt
+[无输出 / Нет вывода]
+[退出码 / Код: 0]
+
+$ git commit -m "Resolve price conflict"
+[main 192c9a7] Resolve price conflict
+[退出码 / Код: 0]
+
+$ git log --oneline --graph --all
+*   192c9a7 Resolve price conflict
+|\
+| * e2dc07d Set promotional price
+* | ce9bbc6 Increase price
+|/
+* 7e8c651 Add base price
+* 2f27fa1 Add feature A
+* 47d5c1c Add readme
+[退出码 / Код: 0]
+
+任务 / Задание 4
+
+$ git tag v1.0.0
+[无输出 / Нет вывода]
+[退出码 / Код: 0]
+
+$ git tag --list
+v1.0.0
+[退出码 / Код: 0]
+
+$ git switch -c docs/readme-usage
+Switched to a new branch 'docs/readme-usage'
+[退出码 / Код: 0]
+
+$ echo "Запуск: откройте readme.txt и price.txt." >> readme.txt
+[无输出 / Нет вывода]
+[退出码 / Код: 0]
+
+$ git add readme.txt
+[无输出 / Нет вывода]
+[退出码 / Код: 0]
+
+$ git commit -m "Explain how to inspect the exercise files"
+[docs/readme-usage fe6d0b5] Explain how to inspect the exercise files
+ 1 file changed, 1 insertion(+)
+[退出码 / Код: 0]
+
+$ git diff main...docs/readme-usage -- readme.txt
+diff --git a/readme.txt b/readme.txt
+index ed8d9a8..2d70a43 100644
+--- a/readme.txt
++++ b/readme.txt
+@@ -1 +1,2 @@
+ Проект: учебный
++Запуск: откройте readme.txt и price.txt.
+[退出码 / Код: 0]
+
+$ git switch main
+Switched to branch 'main'
+[退出码 / Код: 0]
+
+任务 / Задание verify
+
+$ cat price.txt
+Цена: 90 рублей
+[退出码 / Код: 0]
+
+$ git status --porcelain=v1
+[无输出 / Нет вывода]
+[退出码 / Код: 0]
+
+$ git ls-files -u
+[无输出 / Нет вывода]
+[退出码 / Код: 0]
+
+$ git diff --check
+[无输出 / Нет вывода]
+[退出码 / Код: 0]
+
+$ git branch --list
+  docs/readme-usage
+  feature-a
+* main
+  price-promo
+  price-up
+[退出码 / Код: 0]
+
+$ git rev-parse v1.0.0
+192c9a7a1f41998e7ba93b4ce3cadd037bbfab1d
+[退出码 / Код: 0]
+
+$ git rev-parse main
+192c9a7a1f41998e7ba93b4ce3cadd037bbfab1d
+[退出码 / Код: 0]
+
+$ git rev-parse docs/readme-usage
+fe6d0b59d56b023f0b9fce22b25c7620da174776
+[退出码 / Код: 0]
+
+$ git show -s --format=%P main
+ce9bbc6b67120c12f706005bade51183a59e7a96 e2dc07de1489308616036b676975994efb03ea45
+[退出码 / Код: 0]
+
+$ git rev-list --count main
+6
+[退出码 / Код: 0]

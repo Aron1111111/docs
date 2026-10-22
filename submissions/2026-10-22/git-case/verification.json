@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-22",
+  "git": "git version 2.51.1",
+  "original_main": "192c9a7a1f41998e7ba93b4ce3cadd037bbfab1d",
+  "readme_branch": "fe6d0b59d56b023f0b9fce22b25c7620da174776",
+  "merge_parents": [
+    "ce9bbc6b67120c12f706005bade51183a59e7a96",
+    "e2dc07de1489308616036b676975994efb03ea45"
+  ],
+  "final_price_rub": 90,
+  "main_commit_count": 6,
+  "working_tree_clean": true,
+  "unmerged_index_entries": 0,
+  "bundle_refs": [
+    "refs/heads/docs/readme-usage",
+    "refs/heads/feature-a",
+    "refs/heads/main",
+    "refs/heads/price-promo",
+    "refs/heads/price-up",
+    "refs/tags/v1.0.0"
+  ],
+  "tag_scope": "Independent exercise v1.0.0 inside bundle",
+  "review": "Aron self-check; no independent approval claimed",
+  "checks": {
+    "bundle_verify": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "sha256": {
+    "git-case-history.bundle": "690cbbeda2b222a2330cf3b937f37d5e5733db1c7b52f742bb65a8f6d8ea3f01",
+    "git-case-report-zh-ru.docx": "249955d5ccaaca19678d6078f41be0ee37e659f7a87db29342677b9a0e7c7ae4"
+  }
+}
