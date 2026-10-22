@@ -1,1 +1,1 @@
-`python -B tools/check_docs.py`
+`python -B -X utf8 tools/check_docs.py`
