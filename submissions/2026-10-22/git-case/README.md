@@ -7,8 +7,8 @@
 
 | 材料 / Материал | 入口 / Ссылка |
 | --- | --- |
-| 网页版完整答案 / Полный ответ в браузере | [report.md](report.md) |
-| 中俄双语Word / Word на китайском и русском | [git-case-report-zh-ru.docx](git-case-report-zh-ru.docx) |
+| 网页版完整答案 /  браузере | [report.md](report.md) |
+| 中俄双语Word / Word | [git-case-report-zh-ru.docx](git-case-report-zh-ru.docx) |
 | 每条命令及退出码 / Команды и коды завершения | [command-output.txt](command-output.txt) |
 | 完整练习历史 / Полная учебная история | [git-case-history.bundle](git-case-history.bundle) |
 | 分支与标签哈希 / Хеши веток и тега | [history-refs.txt](history-refs.txt) |
